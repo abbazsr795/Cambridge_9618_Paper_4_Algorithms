@@ -7,8 +7,10 @@ x = Person("abbazs", 18)
 y = Person("Azeem", 17)
 z = Person("Gopal", 12)
 
-file1 = open("/Users/abbazs/Desktop/AS Python /My Algorithms/File1.dat", "r+b")
-# write --->  pickle.dump (x,file1)
-# read ---> yeet = pickle.load(file1)
-# print ---> print(yeet.name)
+file1 = open("./My Algorithms/File1.dat", "wb") #Write data
+pickle.dump(y,file1)
+file1.close()
+file1 = open("./My Algorithms/File1.dat", "rb") #Read data
+yeet = pickle.load(file1)
+print(yeet.name)
 file1.close()

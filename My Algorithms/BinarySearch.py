@@ -3,7 +3,7 @@ array = [1,2,23,44,75,432,5974]
 lb = 0
 ub = len(array) - 1
 found = False
-search_value = 4
+search_value = 5974
 while not(ub<lb) and not(found):
     mid = int((lb + ub)/2)
     if array[mid] == search_value:

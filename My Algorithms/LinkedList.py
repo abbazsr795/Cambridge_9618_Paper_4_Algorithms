@@ -1,20 +1,59 @@
-class node:
-    def __init__(self,value,pointer):
-        self.value = value
-        self.pointer = pointer
+LLP = [1,2,3,4,-1]
+LL = [None,None,None,None,None]
+hp = 0
+sp = -1
 
-array = [node(55,3),node(23,2),node(11,-1),node(98,1),node(None,-1,-1),node(None,-1,-1)]
-startPointer = 0
-heapPointer = 4
+def Stats():
+    global hp, sp, LLP, LL
+    print(LL)
+    print(LLP)
+    print(f"hp : {hp}, sp : {sp}")
+    print("------------------------------")
 
-def searchLinkedList(list,value):
-    global startPointer
-    global heapPointer
-    itemPointer = startPointer
-    while (itemPointer != -1) and (list[itemPointer].value != value):
-        itemPointer = list[itemPointer].pointer
-    if itemPointer == -1:
-        print("item not found")
+def Add(x):
+    global hp, sp, LLP, LL
+    if hp == -1:
+        print("List is full")
     else:
-        print(itemPointer)
+        temp = sp
+        sp = hp
+        LL[sp] = x
+        hp = LLP[hp]
+        LLP[sp] = temp
 
+def Search(x):
+    found = False
+    i = sp
+    while not(found) and (i != -1):
+        if LL[i] == x:
+            found = True
+            print(i)
+        else:
+            i = LLP[i]
+    if not(found):
+        print("Item not found")
+
+def Delete(x):
+    global hp, sp, LLP, LL
+    if sp != -1:
+        found = False
+        i = sp
+        j = i
+        while not(found) and (i != -1):
+            if LL[i] == x:
+                found = True
+            else:
+                j = i
+                i = LLP[i]
+        if not(found):
+            print("Item not found")
+        else:
+            if i == sp:
+                sp = LLP[i]
+            LLP[j] = LLP[i]
+            LLP[i] = hp
+            LL[i] = None
+            hp = i
+
+    else:
+        print("List is empty")
